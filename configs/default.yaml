@@ -1,0 +1,122 @@
+# Default configuration for Adaptive Spectral Rewiring
+
+# Experiment settings
+experiment:
+  name: "asr_molecular_graphs"
+  seed: 42
+  device: "cuda"
+  log_dir: "logs"
+  checkpoint_dir: "checkpoints"
+
+# Data settings
+data:
+  dataset: "ogbg-molhiv"
+  data_dir: "data"
+  batch_size: 32
+  num_workers: 4
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  shuffle: true
+  drop_last: false
+
+# Model settings
+model:
+  hidden_dim: 256
+  num_layers: 5
+  dropout: 0.1
+  pooling: "mean"
+  use_batch_norm: true
+  activation: "relu"
+  
+  # Graph Neural Network backbone
+  gnn:
+    type: "gcn"
+    aggr: "add"
+    normalize: true
+    
+  # Adaptive Spectral Rewiring settings
+  rewiring:
+    enabled: true
+    method: "adaptive_spectral"
+    k_hops: 3
+    top_k_edges: 10
+    spectral_threshold: 0.5
+    update_frequency: 1
+    preserve_original: true
+    edge_budget: 1.5
+    
+    # Spectral features
+    use_laplacian: true
+    use_adjacency: true
+    num_eigenvalues: 32
+    
+    # Adaptive components
+    adaptive_threshold: true
+    threshold_learning_rate: 0.001  # Not scientific notation
+    min_threshold: 0.1
+    max_threshold: 0.9
+    
+    # Heterogeneous graph handling
+    node_type_aware: true
+    edge_type_aware: true
+    type_specific_rewiring: true
+
+# Training settings
+training:
+  epochs: 100
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  optimizer: "adam"
+  scheduler: "cosine"
+  warmup_epochs: 5
+  grad_clip: 1.0
+  early_stopping:
+    enabled: true
+    patience: 20
+    min_delta: 0.0001  # Not scientific notation
+  
+  # Loss settings
+  loss:
+    type: "cross_entropy"
+    label_smoothing: 0.0
+    class_weights: null
+    
+  # Regularization
+  regularization:
+    l1_lambda: 0.0
+    l2_lambda: 0.0001  # Not scientific notation
+    spectral_loss_weight: 0.01  # Not scientific notation
+    rewiring_loss_weight: 0.001  # Not scientific notation
+
+# Evaluation settings
+evaluation:
+  metrics:
+    - "accuracy"
+    - "auc_roc"
+    - "f1_score"
+    - "precision"
+    - "recall"
+  eval_frequency: 1
+  save_predictions: true
+  compute_graph_stats: true
+
+# Logging settings
+logging:
+  level: "INFO"
+  use_wandb: false
+  wandb_project: "adaptive-spectral-rewiring"
+  wandb_entity: null
+  log_frequency: 10
+  save_frequency: 5
+  log_graph_stats: true
+  log_rewiring_stats: true
+
+# Checkpoint settings
+checkpoint:
+  save_best: true
+  save_last: true
+  monitor: "val_auc_roc"
+  mode: "max"
+  save_top_k: 3
+  verbose: true

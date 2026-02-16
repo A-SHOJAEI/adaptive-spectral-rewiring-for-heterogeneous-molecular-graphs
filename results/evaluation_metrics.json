@@ -1,0 +1,14 @@
+{
+  "roc_auc": 0.6428,
+  "accuracy": 0.9684,
+  "f1": 0.0,
+  "precision": 0.0,
+  "recall": 0.0,
+  "pr_auc": 0.0616,
+  "loss": 0.139,
+  "dataset": "ogbg-molhiv",
+  "num_test_samples": 4113,
+  "best_epoch": 3,
+  "total_epochs_trained": 23,
+  "early_stopped": true
+}

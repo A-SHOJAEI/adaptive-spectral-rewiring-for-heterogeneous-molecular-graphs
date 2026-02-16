@@ -1,0 +1,282 @@
+# Ablation study configurations for Adaptive Spectral Rewiring
+
+# Base configuration (inherits from default.yaml)
+base:
+  experiment:
+    name: "ablation_study"
+  
+  training:
+    epochs: 50
+
+# Ablation 1: No rewiring (baseline GNN)
+no_rewiring:
+  experiment:
+    name: "ablation_no_rewiring"
+  
+  model:
+    rewiring:
+      enabled: false
+
+# Ablation 2: Static spectral rewiring (no adaptation)
+static_rewiring:
+  experiment:
+    name: "ablation_static_rewiring"
+  
+  model:
+    rewiring:
+      enabled: true
+      adaptive_threshold: false
+      spectral_threshold: 0.5
+
+# Ablation 3: No spectral features
+no_spectral:
+  experiment:
+    name: "ablation_no_spectral"
+  
+  model:
+    rewiring:
+      enabled: true
+      use_laplacian: false
+      use_adjacency: false
+
+# Ablation 4: No type-aware rewiring
+no_type_aware:
+  experiment:
+    name: "ablation_no_type_aware"
+  
+  model:
+    rewiring:
+      enabled: true
+      node_type_aware: false
+      edge_type_aware: false
+      type_specific_rewiring: false
+
+# Ablation 5: Different k-hop neighborhoods
+k_hop_1:
+  experiment:
+    name: "ablation_k_hop_1"
+  
+  model:
+    rewiring:
+      k_hops: 1
+
+k_hop_2:
+  experiment:
+    name: "ablation_k_hop_2"
+  
+  model:
+    rewiring:
+      k_hops: 2
+
+k_hop_4:
+  experiment:
+    name: "ablation_k_hop_4"
+  
+  model:
+    rewiring:
+      k_hops: 4
+
+k_hop_5:
+  experiment:
+    name: "ablation_k_hop_5"
+  
+  model:
+    rewiring:
+      k_hops: 5
+
+# Ablation 6: Different edge budgets
+edge_budget_1_0:
+  experiment:
+    name: "ablation_edge_budget_1_0"
+  
+  model:
+    rewiring:
+      edge_budget: 1.0
+
+edge_budget_1_25:
+  experiment:
+    name: "ablation_edge_budget_1_25"
+  
+  model:
+    rewiring:
+      edge_budget: 1.25
+
+edge_budget_2_0:
+  experiment:
+    name: "ablation_edge_budget_2_0"
+  
+  model:
+    rewiring:
+      edge_budget: 2.0
+
+# Ablation 7: Different update frequencies
+update_freq_5:
+  experiment:
+    name: "ablation_update_freq_5"
+  
+  model:
+    rewiring:
+      update_frequency: 5
+
+update_freq_10:
+  experiment:
+    name: "ablation_update_freq_10"
+  
+  model:
+    rewiring:
+      update_frequency: 10
+
+# Ablation 8: Different number of layers
+layers_3:
+  experiment:
+    name: "ablation_layers_3"
+  
+  model:
+    num_layers: 3
+
+layers_4:
+  experiment:
+    name: "ablation_layers_4"
+  
+  model:
+    num_layers: 4
+
+layers_6:
+  experiment:
+    name: "ablation_layers_6"
+  
+  model:
+    num_layers: 6
+
+# Ablation 9: Different hidden dimensions
+hidden_128:
+  experiment:
+    name: "ablation_hidden_128"
+  
+  model:
+    hidden_dim: 128
+
+hidden_512:
+  experiment:
+    name: "ablation_hidden_512"
+  
+  model:
+    hidden_dim: 512
+
+# Ablation 10: Different GNN backbones
+gnn_gat:
+  experiment:
+    name: "ablation_gnn_gat"
+  
+  model:
+    gnn:
+      type: "gat"
+
+gnn_gin:
+  experiment:
+    name: "ablation_gnn_gin"
+  
+  model:
+    gnn:
+      type: "gin"
+
+gnn_sage:
+  experiment:
+    name: "ablation_gnn_sage"
+  
+  model:
+    gnn:
+      type: "sage"
+
+# Ablation 11: Different pooling strategies
+pooling_max:
+  experiment:
+    name: "ablation_pooling_max"
+  
+  model:
+    pooling: "max"
+
+pooling_sum:
+  experiment:
+    name: "ablation_pooling_sum"
+  
+  model:
+    pooling: "sum"
+
+pooling_attention:
+  experiment:
+    name: "ablation_pooling_attention"
+  
+  model:
+    pooling: "attention"
+
+# Ablation 12: Different spectral loss weights
+spectral_loss_0:
+  experiment:
+    name: "ablation_spectral_loss_0"
+  
+  training:
+    regularization:
+      spectral_loss_weight: 0.0
+
+spectral_loss_0_001:
+  experiment:
+    name: "ablation_spectral_loss_0_001"
+  
+  training:
+    regularization:
+      spectral_loss_weight: 0.001
+
+spectral_loss_0_1:
+  experiment:
+    name: "ablation_spectral_loss_0_1"
+  
+  training:
+    regularization:
+      spectral_loss_weight: 0.1
+
+# Ablation 13: With and without preserving original edges
+no_preserve_original:
+  experiment:
+    name: "ablation_no_preserve_original"
+  
+  model:
+    rewiring:
+      preserve_original: false
+
+# Ablation 14: Different learning rates
+lr_0_0001:
+  experiment:
+    name: "ablation_lr_0_0001"
+  
+  training:
+    learning_rate: 0.0001
+
+lr_0_01:
+  experiment:
+    name: "ablation_lr_0_01"
+  
+  training:
+    learning_rate: 0.01
+
+# Ablation 15: Different dropout rates
+dropout_0:
+  experiment:
+    name: "ablation_dropout_0"
+  
+  model:
+    dropout: 0.0
+
+dropout_0_3:
+  experiment:
+    name: "ablation_dropout_0_3"
+  
+  model:
+    dropout: 0.3
+
+dropout_0_5:
+  experiment:
+    name: "ablation_dropout_0_5"
+  
+  model:
+    dropout: 0.5
