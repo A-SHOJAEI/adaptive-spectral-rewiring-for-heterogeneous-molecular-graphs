@@ -19,11 +19,14 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+*.pyc
 
 # Virtual environments
 venv/
 env/
 ENV/
+.env
+.venv
 
 # IDE
 .vscode/
@@ -38,14 +41,12 @@ ENV/
 htmlcov/
 .tox/
 
-# Data directories (top-level only, large datasets)
-/data/
+# Data directories
+data/
 
-# Model checkpoints and weights (top-level dirs only)
-/checkpoints/
-/models/
+# Model checkpoints and weights
+checkpoints/*.pth
 *.pt
-*.pth
 *.ckpt
 
 # MLflow
@@ -56,8 +57,9 @@ logs/
 training_output.log
 evaluation_output.log
 
-# Results (exclude by default, then whitelist specific files)
+# Results (whitelist specific files)
 results/*
+!results/results.json
 !results/evaluation_metrics.json
 !results/predictions_test.csv
 
@@ -67,4 +69,3 @@ Thumbs.db
 
 # Jupyter
 .ipynb_checkpoints/
-*.ipynb

@@ -1,0 +1,44 @@
+{
+  "model": "Adaptive Spectral Rewiring for Heterogeneous Molecular Graphs",
+  "dataset": "ogbg-molhiv",
+  "task": "Binary Classification (HIV Activity Prediction)",
+  "training_config": {
+    "hidden_dim": 256,
+    "num_layers": 5,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "optimizer": "adam",
+    "scheduler": "cosine",
+    "max_epochs": 100,
+    "early_stopping_patience": 20,
+    "total_graphs": 41127,
+    "train_split": 32901,
+    "val_split": 4113,
+    "test_split": 4113,
+    "hardware": "NVIDIA RTX 4090",
+    "early_stopped": true,
+    "epochs_trained": 23,
+    "best_epoch": 3
+  },
+  "evaluation_metrics": {
+    "roc_auc": 0.6428,
+    "accuracy": 0.9684,
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "pr_auc": 0.0616,
+    "loss": 0.139,
+    "num_test_samples": 4113
+  },
+  "training_progression": [
+    {"epoch": 1, "train_loss": 0.1161, "val_loss": 0.1106},
+    {"epoch": 2, "train_loss": 0.1126, "val_loss": 0.1046},
+    {"epoch": 3, "train_loss": 0.1135, "val_loss": 0.0957},
+    {"epoch": 4, "train_loss": 0.1130, "val_loss": 0.1049},
+    {"epoch": 5, "train_loss": 0.1128, "val_loss": 0.1078},
+    {"epoch": 10, "train_loss": 0.1105, "val_loss": 0.0970},
+    {"epoch": 15, "train_loss": 0.1102, "val_loss": 0.0974},
+    {"epoch": 20, "train_loss": 0.1103, "val_loss": 0.1012},
+    {"epoch": 23, "train_loss": 0.1104, "val_loss": 0.1034}
+  ]
+}
